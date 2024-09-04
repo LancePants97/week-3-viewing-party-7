@@ -45,7 +45,9 @@ RSpec.describe 'Landing Page' do
 
     within('.existing-users') do 
       expect(page).to have_content(user1.email)
+      expect(page).to_not have_link(user1.email)
       expect(page).to have_content(user2.email)
+      expect(page).to_not have_link(user2.email)
     end     
   end 
 
