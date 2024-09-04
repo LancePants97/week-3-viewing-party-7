@@ -23,7 +23,7 @@ RSpec.describe 'Landing Page' do
     expect(current_path).to eq(root_path)
   end 
 
-  it 'lists out existing users' do 
+  it 'lists out existing users emails as strings (NOT links!)' do 
     user = User.create!(name: "funbucket13", email: "420blazeit@railsapp.com", password: "test", password_confirmation: "test")
     user1 = User.create!(name: "User One", email: "user1@test.com", password: "poop", password_confirmation: "poop")
     user2 = User.create!(name: "User Two", email: "user2@test.com", password: "poop", password_confirmation: "poop")
