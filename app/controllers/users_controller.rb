@@ -4,7 +4,11 @@ class UsersController <ApplicationController
   end 
 
   def show 
-    @user = User.find(params[:id])
+    if session[:user_id]
+      @logged_in_user = User.find(params[:id])
+    else
+      @user = User.find(params[:id])
+    end
   end 
 
   def create 
@@ -27,7 +31,7 @@ class UsersController <ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       if params[:location].present?
-        cookies.permanent[:user_location] = { value: params[:location] }
+        cookies.encrypted.permanent[:user_location] = { value: params[:location] }
       end
       flash[:success] = "Welcome, #{user.name}!"
       redirect_to user_path(user)

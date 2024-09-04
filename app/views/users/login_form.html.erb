@@ -7,7 +7,7 @@
   <%= form.password_field :password_confirmation %></br>
 
   <br><%= form.label :location, 'Location:' %>
-  <%= form.text_field :location, value: cookies[:user_location] %></br>
+  <%= form.text_field :location, value: cookies.encrypted[:user_location] %></br>
 
   <%= form.submit "Log In" %>
 <% end %>
