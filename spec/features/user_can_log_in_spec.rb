@@ -83,8 +83,9 @@ RSpec.describe "Logging In" do
     expect(current_path).to eq(user_path(user))
 
     click_on "Log Out"
-    expect(current_path).to eq(login_path)
+    expect(current_path).to eq(root_path)
 
+    visit login_path
     expect(page).to have_field("Location", with: "New Jersey")
   end
 

@@ -1,7 +1,9 @@
-<% if @user %>
 	<h2><%= @user.name %>'s Dashboard</h2>
-
-  <%= link_to 'Log In', login_path %>
+	<% if current_user %>
+		<%= link_to 'Log Out', logout_path, method: :delete %>
+	<% else %>
+		<%= link_to 'Log In', login_path %>
+	<% end %>
 
 	<%= button_to "Find Top Rated Movies", movies_path(@user), method: :get %><br>
 
@@ -13,20 +15,3 @@
 			Date: <%= vp.date %>
 			Time: <%= vp.time %>
 	<% end %>
-
-<% elsif @logged_in_user %>
-	<h2><%= @logged_in_user.name %>'s Dashboard</h2>
-
-	<%= link_to 'Log Out', logout_path, method: :delete %>
-
-	<%= button_to "Find Top Rated Movies", movies_path(@logged_in_user), method: :get %><br>
-
-	<h3>Viewing Parties:</h3>
-
-	<% @logged_in_user.viewing_parties.each do |vp| %>
-			Title: <%= vp.movie.title %>
-			Duration: <%= vp.duration %>
-			Date: <%= vp.date %>
-			Time: <%= vp.time %>
-	<% end %>
-<% end %>

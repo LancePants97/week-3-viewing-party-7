@@ -4,11 +4,7 @@ class UsersController <ApplicationController
   end 
 
   def show 
-    if session[:user_id]
-      @logged_in_user = User.find(params[:id])
-    else
-      @user = User.find(params[:id])
-    end
+    @user = User.find(params[:id])
   end 
 
   def create 
@@ -44,7 +40,7 @@ class UsersController <ApplicationController
   def logout
     session[:user_id] = nil
     flash[:success] = "You have been logged out."
-    redirect_to login_path
+    redirect_to root_path
   end
 
   private
