@@ -1,9 +1,13 @@
 <%= form_with url: login_path, method: :post do |form| %>
-  <%= form.label :email, "Email:" %>
-  <%= form.text_field :email %>
-  <%= form.label :password, "Password:" %>
-  <%= form.text_field :password %>
-  <%= form.label :password_confirmation, 'Confirm Password:' %>
-  <%= form.password_field :password_confirmation %>
+  <br><%= form.label :email, "Email:" %>
+  <%= form.text_field :email %></br>
+  <br><%= form.label :password, "Password:" %>
+  <%= form.text_field :password %></br>
+  <br><%= form.label :password_confirmation, 'Confirm Password:' %>
+  <%= form.password_field :password_confirmation %></br>
+
+  <br><%= form.label :location, 'Location:' %>
+  <%= form.text_field :location, value: cookies[:user_location] %></br>
+
   <%= form.submit "Log In" %>
 <% end %>

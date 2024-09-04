@@ -26,12 +26,21 @@ class UsersController <ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      if params[:location].present?
+        cookies.permanent[:user_location] = { value: params[:location] }
+      end
       flash[:success] = "Welcome, #{user.name}!"
       redirect_to user_path(user)
     else
       flash[:error] = "Sorry, your credentials are bad."
       render :login_form
     end
+  end
+
+  def logout
+    session[:user_id] = nil
+    flash[:success] = "You have been logged out."
+    redirect_to login_path
   end
 
   private

@@ -1,5 +1,9 @@
 <h2><%= @user.name %>'s Dashboard</h2>
 
+<% if @user %>
+    <%= link_to 'Log Out', logout_path, method: :delete %>
+<% end %>
+
 <%= button_to "Find Top Rated Movies", movies_path(@user), method: :get %><br>
 
 <h3>Viewing Parties:</h3>
